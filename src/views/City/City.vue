@@ -1,6 +1,6 @@
 <template>
   <div class="mz-city">
-    <MzHeader title="当前城市-"></MzHeader>
+    <MzHeader :title="'当前城市-' + curCityName"></MzHeader>
 
     <div class="lv-indexlist">
       <ul class="lv-indexlist__content" id="lv-indexlist__content">
@@ -16,7 +16,7 @@
           <div class="hot-city">
             <div class="city-index-title">热门城市</div>
             <ul class="city-index-detail">
-              <li class="city-item-detail" v-for="(item,index) in filterIshot" :key="index">
+              <li class="city-item-detail" v-for="(item,index) in filterIshot" :key="index" @click="changeCity(item)">
                 <div class="city-item-text">{{ item.name }}</div>
               </li>
             </ul>
@@ -25,7 +25,7 @@
         <li class="lv-indexsection" v-for="(item,index) in filterCityData" :key="index" :id="item.py">
           <p class="lv-indexsection__index">{{ item.py }}</p>
           <ul>
-            <li v-for="city in item.list" :key="city.cityId" @click="changeCity"> {{ city.name }} </li>
+            <li v-for="city in item.list" :key="city.cityId" @click="changeCity(city)"> {{ city.name }} </li>
           </ul>
         </li>
       </ul>
@@ -40,63 +40,49 @@
 <script>
 import MzHeader from '@/components/MzHeader/Index.vue'
 import axios from 'axios'
+import { mapState, mapGetters } from 'vuex'
 export default {
   components: {
     MzHeader
   },
-  data () {
-    return {
-      cityData: []
-    }
-  },
   computed: {
-    filterCityData () {
-      let letter = {}
-      let i = 0
-      let res = []
-      this.cityData.forEach(ele => {
-        let firstLetter = ele.pinyin.substr(0, 1).toUpperCase()
-        if (letter[firstLetter]) {
-          let index = letter[firstLetter] - 1
-          res[index].list.push(ele)
-        } else {
-          letter[firstLetter] = ++i
-          let obj = {}
-          obj.py = firstLetter
-          obj.list = [ele]
-          res.push(obj)
-        }
-      })
-      let temp = res.sort((a, b) => {
-        return a.py.charCodeAt() - b.py.charCodeAt()
-      })
-      return temp
-    },
-    filterIshot () {
-      console.log(this.cityData)
-      let hotCity = []
-      this.cityData.forEach(ele => {
-        if (ele.isHot === 1) {
-          hotCity.push(ele)
-        }
-      })
-      return hotCity
-    }
+    ...mapState([
+      'curCityName'
+    ]),
+    ...mapGetters([
+      'filterCityData',
+      'filterIshot'
+    ])
   },
+  // filterCityData () {
+  //   return this.$store.getters.filterCityData
+  // },
+  // filterIshot () {
+  //   return this.$store.getters.filterIshot
+  // },
+  // curCityName () {
+  //   return this.$store.state.curCityName
+  // }
   methods: {
     letterScroll (py) {
       let el = document.getElementById(py)
       document.getElementById('lv-indexlist__content').scrollTop = el.offsetTop
     },
-    changeCity () {
-
+    changeCity (city) {
+      // this.curCityName = city.name
+      // this.$store.state.curCityName = city.name
+      this.$store.commit('chgCityName', city.name)
+      this.$router.push({
+        path: '/film'
+      })
     }
   },
   created () {
     axios.get('./json/city.json').then(res => {
       let data = res.data
       if (data.status === 0) {
-        this.cityData = data.data.cities
+        // this.$store.state.cityData = data.data.cities
+        this.$store.commit('chgCityData', data.data.cities)
       } else {
         alert(data.msg)
       }

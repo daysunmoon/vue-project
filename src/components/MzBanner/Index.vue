@@ -7,10 +7,10 @@
     <!-- 如果需要分页器 -->
     <div class="swiper-pagination"></div>
   </div>
-  <div class="banner-city" @click="city">
-    <span>深圳</span>
+  <router-link to="/city" class="banner-city">
+    <span>{{ curCityName }}</span>
     <i class="iconfont icon-tubiao-"></i>
-  </div>
+  </router-link>
 </div>
 </template>
 <script>
@@ -20,6 +20,11 @@ export default {
     return {
       bannerList: [],
       mySwiper: null
+    }
+  },
+  computed: {
+    curCityName () {
+      return this.$store.state.curCityName
     }
   },
   methods: {
@@ -34,11 +39,6 @@ export default {
         }
       })
       /* eslint-enable */
-    },
-    city () {
-      this.$router.push({
-        path: '/city'
-      })
     }
   },
   created () {

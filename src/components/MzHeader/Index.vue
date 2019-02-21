@@ -1,5 +1,6 @@
 <template>
   <header class="mz-header">
+    <router-link to='/film' class="iconfont icon-error"></router-link>
     <div class="title">
       <div>{{ title }}</div>
     </div>
@@ -30,7 +31,11 @@ export default {
   z-index: 3000;
   background-color: #fff;
   display: flex;
-
+  .iconfont{
+    font-size: 19px;
+    color: #191a1b;
+    margin-left: 10px;
+  }
   .title {
     text-align: center;
     font-size: 17px;
