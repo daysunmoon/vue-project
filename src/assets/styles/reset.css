@@ -6,3 +6,13 @@ em,i{font-style:normal;}
 a,u{text-decoration:none;}
 img{display:block;border:0;}
 input{outline:none;}
+html,body {
+  height: 100%;
+}
+body {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  background: #f4f4f4;
+  /* overflow: hidden; */
+}

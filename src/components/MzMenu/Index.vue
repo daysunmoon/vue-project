@@ -37,6 +37,7 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
+    background: #fff;
     li{
         display: flex;
         width: 25%;

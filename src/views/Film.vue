@@ -2,6 +2,7 @@
     <div>
         <MzBanner></MzBanner>
         <MzTabs></MzTabs>
+        <router-view></router-view>
     </div>
 </template>
 

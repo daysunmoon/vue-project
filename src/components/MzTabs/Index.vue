@@ -2,8 +2,8 @@
   <div>
     <nav>
       <ul>
-        <li><a href="#">正在上映</a></li>
-        <li><a href="#">即将上映</a></li>
+        <li><router-link to="/films/filmList">正在上映</router-link></li>
+        <li><router-link to="/films/jijiang">即将上映</router-link></li>
       </ul>
     </nav>
   </div>
@@ -17,19 +17,17 @@ nav {
         width: 100%;
         li {
             a{
+                display: flex;
                 font-size: 14px;
                 line-height: 49px;
+                height: 100%;
                 color: #191a1b;
             }
+            .router-link-active{
+              border-bottom: 2px solid #ff5f16;
+              color: #ff5f16;
+            }
         }
-        // li:first-child {
-        //     color: #ff5f16;
-        //     border-bottom: 2px solid #ff5f16;
-        // }
-        // li:last-child {
-        //     font-size: 14px;
-        //     line-height: 49px;
-        // }
     }
 }
 </style>
