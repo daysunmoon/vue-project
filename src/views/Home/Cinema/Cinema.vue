@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-import MzCinema from '../components/MzCinema/Index.vue'
+import MzCinema from '@/components/MzCinema/Index.vue'
 import axios from 'axios'
 export default {
   data () {

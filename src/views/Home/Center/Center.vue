@@ -66,7 +66,7 @@
   display: flex;
   margin-top: -44px;
   height: 136px;
-  background: url(../assets/bg.png) no-repeat;
+  background: url('../../../assets/bg.png') no-repeat;
   background-size: cover;
   align-items: center;
   padding-left: 22px;

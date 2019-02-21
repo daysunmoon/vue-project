@@ -16,17 +16,17 @@ Vue.use(VueRouter)
 let router = new VueRouter({
   routes: [{
     path: '/',
-    component: () => import('./views/Home.vue'),
+    component: () => import('./views/Home/Home.vue'),
     children: [{
       path: 'films',
-      component: () => import('./views/Film.vue'),
+      component: () => import('./views/Home/Film/Film.vue'),
       children: [{
         path: 'jijiang',
-        component: () => import('./views/JijiangFilm.vue')
+        component: () => import('./views/Home/Film/Filmshangying/JijiangFilm.vue')
       },
       {
         path: 'filmList',
-        component: () => import('./views/FilmList.vue')
+        component: () => import('./views/Home/Film/Filmshangying/FilmList.vue')
       },
       {
         path: '',
@@ -36,11 +36,11 @@ let router = new VueRouter({
     },
     {
       path: 'cinemas',
-      component: () => import('./views/Cinema.vue')
+      component: () => import('./views/Home/Cinema/Cinema.vue')
     },
     {
       path: 'center',
-      component: () => import('./views/Center.vue')
+      component: () => import('./views/Home/Center/Center.vue')
     },
     {
       path: '',
@@ -50,28 +50,28 @@ let router = new VueRouter({
   },
   {
     path: '/city',
-    component: () => import('./views/City.vue')
+    component: () => import('./views/City/City.vue')
   },
   {
     path: '/detail/:id',
     name: 'detail',
-    component: () => import('./views/Detail.vue')
+    component: () => import('./views/Detail/Detail.vue')
   },
   {
     path: '/login',
-    component: () => import('./views/Login.vue')
+    component: () => import('./views/Login/Login.vue')
   },
   {
     path: '/card',
-    component: () => import('./views/Card.vue')
+    component: () => import('./views/Card/Card.vue')
   },
   {
     path: '/money',
-    component: () => import('./views/Money.vue')
+    component: () => import('./views/Money/Money.vue')
   },
   {
     path: '/settings',
-    component: () => import('./views/Settings.vue')
+    component: () => import('./views/Settings/Settings.vue')
   },
   {
     path: '*',

@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import MzMenu from '../components/MzMenu/Index.vue'
+import MzMenu from '@/components/MzMenu/Index.vue'
 export default {
   components: {
     MzMenu

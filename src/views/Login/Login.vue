@@ -1,7 +1,7 @@
 <template>
   <div id="login">
         <div id="logo">
-            <img src="../assets/centerlogo.png" alt="">
+            <img src="@/assets/centerlogo.png" alt="">
         </div>
         <div id="login-form">
             <form action="">
