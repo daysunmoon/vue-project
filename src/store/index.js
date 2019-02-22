@@ -4,8 +4,9 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 let store = new Vuex.Store({
   state: {
-    curCityName: '深圳',
-    cityData: []
+    curCityName: '',
+    cityData: [],
+    locationCity: '定位失败'
   },
   getters: {
     filterCityData (state) {
@@ -51,6 +52,17 @@ let store = new Vuex.Store({
     },
     chgCityData (state, payload) {
       state.cityData = payload
+    }
+  },
+  actions: {
+    getLocation ({ commit, state }) {
+      /* eslint-disable */ 
+      var myCity = new BMap.LocalCity()
+      myCity.get((result) => {
+        console.log(result)
+        commit('chgCityName', result.name)
+        state.locationCity = result.name
+      })
     }
   }
 })

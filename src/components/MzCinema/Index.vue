@@ -50,7 +50,7 @@
     box-sizing: border-box;
     justify-content: space-around;
     align-items: center;
-    span {
+    div{
       font-size: 14px;
     }
   }

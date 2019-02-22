@@ -118,7 +118,8 @@ export default {
     align-items: center;
     justify-content: space-between;
     background: #fff;
-    opacity: 0.5;
+    // opacity: 0.5;
+    font-size: 17px;
   }
   .filmImg {
     height: 211px;

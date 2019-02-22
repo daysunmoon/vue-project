@@ -55,14 +55,11 @@ export default {
 
 <style lang="less">
 .filmList-section {
-  display: flex;
-  flex: 1;
-  overflow: auto;
   padding-bottom: 49px;
+  // width: 100%;
   #main {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+    // display: flex;
+    // flex-direction: column;
     margin-left: 15px;
     li {
       padding: 15px 15px 15px 0;
@@ -71,10 +68,11 @@ export default {
       a {
         display: flex;
         align-items: center;
+        justify-content: flex-start;
         .tupian {
           width: 66px;
           height: 94px;
-          // float: left;
+          float: left;
           img {
             width: 100%;
             height: 100%;
@@ -82,15 +80,19 @@ export default {
         }
         .intro {
           font-size: 12px;
-          width: 150px;
-          // width: calc(100% - 116px);
+          width: calc(100% - 136px);
           padding: 0 10px;
+          float: left;
           .filmName {
             color: #191a1b;
             font-size: 16px;
             height: 22px;
             line-height: 22px;
             margin-right: 5px;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
           }
           .item {
             font-size: 9px;
@@ -100,6 +102,10 @@ export default {
             line-height: 14px;
             padding: 0 2px;
             border-radius: 2px;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
           }
           .idol {
             width: 100%;
@@ -126,6 +132,7 @@ export default {
           border-radius: 2px;
           border: 1px solid #ff5f16;
           line-height: 25px;
+          float: right;
         }
       }
     }

@@ -9,7 +9,7 @@
             <div class="city-index-title">GPS定位你所在城市</div>
             <ul class="city-index-detail">
               <li class="city-item-detail city-item-detail-gprs">
-                <div class="city-item-text">定位失败</div>
+                <div class="city-item-text">{{ this.$store.state.locationCity }}</div>
               </li>
             </ul>
           </div>

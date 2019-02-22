@@ -55,11 +55,9 @@ export default {
 
 <style lang="less">
 .filmList-section {
-  display: flex;
   flex: 1;
   overflow: auto;
   #main {
-    width: 100%;
     display: flex;
     flex-direction: column;
     margin-left: 15px;
@@ -81,8 +79,7 @@ export default {
         }
         .intro {
           font-size: 12px;
-          width: 150px;
-          // width: calc(100% - 116px);
+          width: calc(100% - 136px);
           padding: 0 10px;
           .filmName {
             color: #191a1b;

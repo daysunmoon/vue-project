@@ -72,6 +72,7 @@ export default {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        font-size: 12px;
       }
     }
     .distance {
@@ -80,8 +81,10 @@ export default {
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
+      font-size: 11px;
       span {
         color: #ff5f16;
+        font-size:11px;
         b {
           font-size: 15px;
           font-weight: normal;
