@@ -3,18 +3,18 @@
         <div id="main">
             <li v-for="item in filmList" :key="item._id">
                 <router-link :to="{name:'detail',params:{id:item._id}}">
-                    <div class="tupian"><img :src="item.filmImg" alt=""></div>
+                    <div class="tupian"><img :src="item.imgUrl" alt=""></div>
                     <div class="intro">
                         <div class="name">
-                            <span class="filmName">{{ item.filmName }}</span>
+                            <span class="filmName">{{ item.name }}</span>
                             <span class="item">2D</span>
                         </div>
                         <div class="code">
                             <span class="label">观众评分 </span>
-                            <span class="grade">{{ item.star }}</span>
+                            <span class="grade">{{ item.score }}</span>
                         </div>
                         <div class="idol">
-                            <span class="label">{{ item.describe }}</span>
+                            <span class="label">{{ item.starring }}</span>
                         </div>
                         <div class="timing">
                             <span class="label">中国大陆 | 100分钟</span>
@@ -36,7 +36,7 @@ export default {
   },
   created () {
     axios
-      .get('http://localhost:3000/film/search', {
+      .get('http://localhost:3000/films/search', {
         params: {
           pageSize: 10
         }
@@ -58,6 +58,7 @@ export default {
   display: flex;
   flex: 1;
   overflow: auto;
+  padding-bottom: 49px;
   #main {
     width: 100%;
     display: flex;

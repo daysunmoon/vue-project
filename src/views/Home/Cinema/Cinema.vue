@@ -4,12 +4,12 @@
     <div class="MzFilmAdress" v-for="item in cinemaList" :key="item._id">
     <div class="MzFilmAdress-item">
         <div class="cinemaName">
-          <p>{{ item.cinemaName}}</p>
-          <span>{{ item.cinemaAddress}}</span>
+          <p>{{ item.name }}</p>
+          <span>{{ item.address}}</span>
         </div>
         <div class="distance">
-          <span>￥<b>{{ item.LowerPrice}}</b><em>起</em></span>
-          <p>{{ item.mile}}</p>
+          <span>￥<b>{{ item.price}}</b><em>起</em></span>
+          <p>{{ item.distance}}</p>
         </div>
     </div>
 </div>
@@ -45,6 +45,8 @@ export default {
 .cinemaHeader {
   position: relative;
   background: #fff;
+  padding-bottom: 49px;
+  padding-top: 93px;
   .MzFilmAdress {
     padding: 15px;
     border-top: 1px solid #ededed;

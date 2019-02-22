@@ -2,20 +2,20 @@
     <div class="film-item">
         <div class="top">
             <i class="iconfont icon-zuo" @click="toleft"></i>
-            <p>{{ detailList.filmName }}</p>
+            <p>{{ detailList.name }}</p>
             <p></p>
         </div>
         <div class="filmImg">
-            <img :src="detailList.filmImg" alt="">
+            <img :src="detailList.imgUrl" alt="">
         </div>
         <div class="info">
             <div class="title">
-                <div>{{ detailList.filmName }}<i class="D">2D</i></div>
+                <div>{{ detailList.name }}<i class="D">2D</i></div>
                 <span><i class="pingfen">7.9</i>分</span>
             </div>
             <div class="category grey-text">科幻</div>
             <div class="premieretime grey-text">2019-02-05上映</div>
-            <div class="runtime grey-text">中国大陆  | 100分钟</div>
+            <div class="runtime grey-text"><i>{{ detailList.country }}</i>  | <i>{{ detailList.time }}分钟</i></div>
             <div class="introduction grey-text">太阳即将毁灭，人类在地球表面建造出巨大的推进器，寻找新家园。然而宇宙之路危机四伏，为了拯救地球，为了人类能在漫长的2500年后抵达新的家园，流浪地球时代的年轻人挺身而出，展开争分夺秒的生死之战。</div>
         </div>
         <div class="actor">
@@ -80,7 +80,7 @@ export default {
     }
   },
   created () {
-    axios.post('http://localhost:3000/film/find', {
+    axios.post('http://localhost:3000/films/find', {
       id: this.$route.params.id
     }).then(res => {
       let data = res.data
