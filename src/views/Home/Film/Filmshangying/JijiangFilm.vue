@@ -36,9 +36,10 @@ export default {
   },
   created () {
     axios
-      .get('http://localhost:3000/films/search', {
-        params: {
-          pageSize: 10
+      .get('https://m.maizuo.com/gateway?cityId=440300&pageNum=1&pageSize=10&type=2&k=6292712', {
+        headers: {
+          'X-Client-Info': '{"a":"3000","ch":"1002","v":"1.0.0","e":"154815477056027848376790"}',
+          'X-Host': 'mall.film-ticket.film.list'
         }
       })
       .then(res => {

@@ -2,7 +2,7 @@
 <div>
    <div class="swiper-container mz-banner">
     <div class="swiper-wrapper">
-        <div class="swiper-slide" v-for="item in bannerList" :key="item._id"><img :src="item.imgUrl" alt=""></div>
+        <div class="swiper-slide" v-for="item in bannerList" :key="item.bannerId"><img :src="item.imgUrl" alt=""></div>
     </div>
     <!-- 如果需要分页器 -->
     <div class="swiper-pagination"></div>
@@ -37,19 +37,23 @@ export default {
         pagination: {
           el: ".swiper-pagination"
         }
-      })
+      });
       /* eslint-enable */
     }
   },
   created () {
-    axios.get('http://localhost:3000/banner/search', {
-      params: {
-        pageSize: 10
-      }
-    })
+    axios
+      .get('https://m.maizuo.com/gateway?type=2&cityId=440300&k=6113154', {
+        headers: {
+          // 配置请求头
+          'X-Client-Info': '{"a":"3000","ch":"1002","v":"1.0.0","e":"154815477056027848376790"}',
+          'X-Host': 'mall.cfg.common-banner'
+        }
+      })
       .then(res => {
         let data = res.data
-        if (data.code === 0) {
+        console.log(data)
+        if (data.status === 0) {
           this.bannerList = data.data
           this.$nextTick(() => {
             this.initSwiper()

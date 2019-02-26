@@ -1,20 +1,20 @@
 <template>
   <section class="filmList-section">
         <div id="main">
-            <li v-for="item in filmList" :key="item._id">
-                <router-link :to="{name:'detail',params:{id:item._id}}">
-                    <div class="tupian"><img :src="item.imgUrl" alt=""></div>
+            <li v-for="item in filmList" :key="item.filmId">
+                <router-link :to="{name:'detail',params:{id:item.filmId}}">
+                    <div class="tupian"><img :src="item.poster" alt=""></div>
                     <div class="intro">
                         <div class="name">
                             <span class="filmName">{{ item.name }}</span>
-                            <span class="item">2D</span>
+                            <span class="item">{{ item.filmType && item.filmType.name }}</span>
                         </div>
                         <div class="code">
                             <span class="label">观众评分 </span>
-                            <span class="grade">{{ item.score }}</span>
+                            <span class="grade">{{ item.grade }}</span>
                         </div>
                         <div class="idol">
-                            <span class="label">{{ item.starring }}</span>
+                            <span class="label">主演：{{ item.actors ? item.actors.map(items => items.name).join(' ') : '暂无主演' }}</span>
                         </div>
                         <div class="timing">
                             <span class="label">中国大陆 | 100分钟</span>
@@ -36,15 +36,17 @@ export default {
   },
   created () {
     axios
-      .get('http://localhost:3000/films/search', {
-        params: {
-          pageSize: 10
+      .get('https://m.maizuo.com/gateway?cityId=440300&pageNum=1&pageSize=10&type=1&k=9108869', {
+        headers: {
+          'X-Client-Info': '{"a":"3000","ch":"1002","v":"1.0.0","e":"154815477056027848376790"}',
+          'X-Host': 'mall.film-ticket.film.list'
         }
       })
       .then(res => {
         let data = res.data
-        if (data.code === 0) {
-          this.filmList = data.data
+        console.log(data.data)
+        if (data.status === 0) {
+          this.filmList = data.data.films
         } else {
           alert('网络异常，请稍后重试')
         }
