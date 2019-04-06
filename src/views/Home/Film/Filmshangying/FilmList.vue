@@ -24,6 +24,8 @@
                 </router-link>
             </li>
         </div>
+        <p v-if="pageNum >= pages" class="more">我是有底线的，别拉拉。</p>
+        <a v-else @click="loadMore" class="more">点击加载更多</a>
     </section>
 </template>
 <script>
@@ -31,26 +33,52 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      filmList: []
+      filmList: [],
+      pageSize: 10,
+      pageNum: 1,
+      total: 0
+    }
+  },
+  computed: {
+    pages () {
+      console.log(this.total)
+      return Math.ceil(this.total / this.pageSize)
+    }
+  },
+  methods: {
+    getFilmData () {
+      axios
+        .get('https://m.maizuo.com/gateway', {
+          headers: {
+            'X-Client-Info': '{"a":"3000","ch":"1002","v":"1.0.0","e":"154815477056027848376790"}',
+            'X-Host': 'mall.film-ticket.film.list'
+          },
+          params: {
+            cityId: 440300,
+            pageNum: this.pageNum,
+            pageSize: this.pageSize,
+            type: 1,
+            k: 1623602
+          }
+        })
+        .then(res => {
+          let data = res.data
+          if (data.status === 0) {
+            // this.filmList = data.data.films
+            this.filmList = this.filmList.concat(data.data.films)
+            this.total = data.data.total
+          } else {
+            alert('网络异常，请稍后重试')
+          }
+        })
+    },
+    loadMore () {
+      this.pageNum++
+      this.getFilmData()
     }
   },
   created () {
-    axios
-      .get('https://m.maizuo.com/gateway?cityId=440300&pageNum=1&pageSize=10&type=1&k=9108869', {
-        headers: {
-          'X-Client-Info': '{"a":"3000","ch":"1002","v":"1.0.0","e":"154815477056027848376790"}',
-          'X-Host': 'mall.film-ticket.film.list'
-        }
-      })
-      .then(res => {
-        let data = res.data
-        console.log(data.data)
-        if (data.status === 0) {
-          this.filmList = data.data.films
-        } else {
-          alert('网络异常，请稍后重试')
-        }
-      })
+    this.getFilmData()
   }
 }
 </script>
@@ -138,6 +166,18 @@ export default {
         }
       }
     }
+  }
+  .more{
+    display: block;
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+    line-height: 14px;
+    margin-top: 10px;
+    color:#ff5f16;
+    border:none;
+    // background:#fff;
+    padding-bottom:10px;
   }
 }
 </style>

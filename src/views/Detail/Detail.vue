@@ -6,54 +6,26 @@
             <p></p>
         </div>
         <div class="filmImg">
-            <img :src="detailList.imgUrl" alt="">
+            <img :src="detailList.poster" alt="">
         </div>
         <div class="info">
             <div class="title">
                 <div>{{ detailList.name }}<i class="D">2D</i></div>
-                <span><i class="pingfen">7.9</i>分</span>
+                <span><i class="pingfen">{{ detailList.grade }}</i>分</span>
             </div>
-            <div class="category grey-text">科幻</div>
+            <div class="category grey-text">{{ detailList.category }}</div>
             <div class="premieretime grey-text">2019-02-05上映</div>
-            <div class="runtime grey-text"><i>{{ detailList.country }}</i>  | <i>{{ detailList.time }}分钟</i></div>
-            <div class="introduction grey-text">太阳即将毁灭，人类在地球表面建造出巨大的推进器，寻找新家园。然而宇宙之路危机四伏，为了拯救地球，为了人类能在漫长的2500年后抵达新的家园，流浪地球时代的年轻人挺身而出，展开争分夺秒的生死之战。</div>
+            <div class="runtime grey-text"><i>{{ detailList.nation }}</i>  | <i>{{ detailList.runtime }}分钟</i></div>
+            <div class="introduction grey-text">{{ detailList.synopsis }}</div>
         </div>
         <div class="actor">
             <div class="actor-person">演职人员</div>
             <div class="actors">
-                <div class="actors-item">
-                    <img src="https://pic.maizuo.com/usr/movie/88357f5dd8a4e3736863f0dd04126b3b.jpg?x-oss-process=image/quality,Q_70" alt="">
+                <div class="actors-item" v-for="(actors,index) in detailList.actors" :key="index">
+                      <img :src="actors.avatarAddress" alt="">
                     <div class="actors-name">
-                        <span class="actorsName">郭帆</span>
-                        <span class="actors-zhiwei">导演</span>
-                    </div>
-                </div>
-                <div class="actors-item">
-                    <img src="https://pic.maizuo.com/usr/movie/88357f5dd8a4e3736863f0dd04126b3b.jpg?x-oss-process=image/quality,Q_70" alt="">
-                    <div class="actors-name">
-                        <span class="actorsName">郭凡</span>
-                        <span class="actors-zhiwei">导演</span>
-                    </div>
-                </div>
-                <div class="actors-item">
-                    <img src="https://pic.maizuo.com/usr/movie/88357f5dd8a4e3736863f0dd04126b3b.jpg?x-oss-process=image/quality,Q_70" alt="">
-                    <div class="actors-name">
-                        <span class="actorsName">郭凡</span>
-                        <span class="actors-zhiwei">导演</span>
-                    </div>
-                </div>
-                <div class="actors-item">
-                    <img src="https://pic.maizuo.com/usr/movie/88357f5dd8a4e3736863f0dd04126b3b.jpg?x-oss-process=image/quality,Q_70" alt="">
-                    <div class="actors-name">
-                        <span class="actorsName">郭凡</span>
-                        <span class="actors-zhiwei">导演</span>
-                    </div>
-                </div>
-                <div class="actors-item">
-                    <img src="https://pic.maizuo.com/usr/movie/88357f5dd8a4e3736863f0dd04126b3b.jpg?x-oss-process=image/quality,Q_70" alt="">
-                    <div class="actors-name">
-                        <span class="actorsName">郭凡</span>
-                        <span class="actors-zhiwei">导演</span>
+                        <span class="actorsName">{{ actors.name }}</span>
+                        <span class="actors-zhiwei">{{ actors.role }}</span>
                     </div>
                 </div>
             </div>
@@ -62,13 +34,19 @@
           <div class="photos-title">
             <span>剧照</span>
           </div>
-          <div class="photos"></div>
+          <div class="photos">
+            <ul>
+              <li v-for="(photos,index) in detailList.photos" :key="index"><img :src="photos" alt=""></li>
+            </ul>
+          </div>
         </div>
-        <a href="#" class="footer">
+        <div class="footer">
+          <router-link to="/selectCinema">
           <div class="footer-shop">
             选座购票
           </div>
-        </a>
+        </router-link>
+        </div>
     </div>
 </template>
 <script>
@@ -80,13 +58,20 @@ export default {
     }
   },
   created () {
-    axios.post('http://localhost:3000/films/find', {
-      id: this.$route.params.id
+    axios.get('https://m.maizuo.com/gateway', {
+      params: {
+        filmId: this.$route.params.id
+      },
+      headers: {
+        'X-Client-Info': '{"a":"3000","ch":"1002","v":"1.0.0","e":"154815477056027848376790"}',
+        'X-Host': 'mall.film-ticket.film.info'
+      }
+
     }).then(res => {
       let data = res.data
-      console.log(res)
-      if (data.code === 0) {
-        this.detailList = data.data
+      if (data.status === 0) {
+        this.detailList = data.data.film
+        console.log(this.detailList)
       } else {
         alert('网络异常，请稍后重试')
       }
@@ -211,6 +196,9 @@ export default {
             width: 85px;
             height: 18px;
             text-align: center;
+            overflow:hidden;
+            white-space:nowrap;
+            text-overflow:ellipsis;
           }
           .actors-zhiwei{
             font-size: 10px;
@@ -237,6 +225,23 @@ export default {
     }
     .photos{
       height: 115px;
+      overflow-y: hidden;
+      overflow-x: auto;
+      ul{
+        display: flex;
+        padding-left: 15px;
+        align-items: center;
+        li{
+          cursor: pointer;
+          display: block;
+          float: left;
+          min-width:150px;
+          margin-right: 10px;
+          img{
+            width: 100%;
+          }
+        }
+      }
     }
   }
   .footer{

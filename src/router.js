@@ -49,6 +49,19 @@ let router = new VueRouter({
     ]
   },
   {
+    path: '/selectCinema',
+    component: () => import('./views/SelectCinema/SelectCiname.vue')
+  },
+  {
+    path: '/choiceFilm/:id',
+    name: 'choiceFilm',
+    component: () => import('./views/ChoiceFilm/ChoiceFilm.vue')
+  },
+  {
+    path: '/choiceChair',
+    component: () => import('./views/ChoiceChair/ChoiceChair.vue')
+  },
+  {
     path: '/city',
     component: () => import('./views/City/City.vue')
   },

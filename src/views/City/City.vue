@@ -74,6 +74,9 @@ export default {
       this.$store.commit('chgCityName', city.name)
       this.$router.push({
         path: '/film'
+        // params: {
+        //   cityId: this.commit.filterCityData.list.cityId
+        // }
       })
     }
   },

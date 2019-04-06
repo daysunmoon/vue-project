@@ -1,13 +1,23 @@
 <template>
-    <div class="cinema">
+  <div>
+      <div class="cinema">
         <div class="top">
-            <span>深圳<i class="iconfont icon-tubiao-"></i></span>
-            <p>影院</p>
-            <i class="iconfont icon-sousuo"></i>
+          <i class="iconfont icon-zuo"></i>
+          <p>影院</p>
+          <i class="iconfont icon-sousuo"></i>
         </div>
-    </div>
+      </div>
+    <MzCinemaList></MzCinemaList>
+  </div>
 </template>
-
+<script>
+import MzCinemaList from '@/components/MzCinema/CinemaList.vue'
+export default {
+  components: {
+    MzCinemaList
+  }
+}
+</script>
 <style lang="less">
 .cinema {
   position: fixed;

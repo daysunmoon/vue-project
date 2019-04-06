@@ -7,7 +7,7 @@
             </router-link>
         </li>
         <li>
-            <router-link to="/cinemas">
+            <router-link to="/cinemas" >
                 <i class="iconfont icon-yingyuana"></i>
                 <em>影院</em>
             </router-link>
