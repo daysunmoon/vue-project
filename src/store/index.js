@@ -6,6 +6,7 @@ let store = new Vuex.Store({
   state: {
     curCityName: '',
     cityData: [],
+    curCityId: '',
     locationCity: '定位失败'
   },
   getters: {
@@ -48,7 +49,9 @@ let store = new Vuex.Store({
      * @param {Object} payload
      */
     chgCityName (state, payload) {
-      state.curCityName = payload
+      console.log(payload)
+      // state.curCityName = payload.curCityName
+      // state.curCityId = payload.curCityId
     },
     chgCityData (state, payload) {
       state.cityData = payload

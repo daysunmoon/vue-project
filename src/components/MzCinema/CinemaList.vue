@@ -37,8 +37,8 @@ export default {
   created () {
     axios.get('https://m.maizuo.com/gateway', {
       params: {
-        cityId: 440300,
-        k: 8849249,
+        cityId: this.$store.state.curCityId,
+        // k: 8849249,
         pageSize: 10
       },
       headers: {
