@@ -6,7 +6,8 @@ let store = new Vuex.Store({
   state: {
     curCityName: '',
     cityData: [],
-    curCityId: '',
+    filmData: [],
+    orderList: [],
     locationCity: '定位失败'
   },
   getters: {
@@ -50,11 +51,15 @@ let store = new Vuex.Store({
      */
     chgCityName (state, payload) {
       console.log(payload)
-      // state.curCityName = payload.curCityName
+      state.curCityName = payload
       // state.curCityId = payload.curCityId
     },
     chgCityData (state, payload) {
       state.cityData = payload
+    },
+    //获取电影数据
+    getFilmData (state,payload) {
+      state.filmData = payload
     }
   },
   actions: {
@@ -66,6 +71,9 @@ let store = new Vuex.Store({
         commit('chgCityName', result.name)
         state.locationCity = result.name
       })
+    },
+    getOrderList ({ commit, state }) {
+      
     }
   }
 })

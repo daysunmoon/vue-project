@@ -106,12 +106,12 @@
         </div>
         <div class="film-info">
           <div data-v-1ed7d58f="" class="film-head">
-            <span data-v-1ed7d58f="" class="film-name">老师·好</span>
-            <span data-v-1ed7d58f="" class="film-score">7</span>
-            <span data-v-1ed7d58f="" class="film-score-unit">分</span>
+            <span class="film-name">{{ this.$store.state.filmData.name }}</span>
+            <span class="film-score">{{ this.$store.state.filmData.grade }}</span>
+            <span class="film-score-unit">分</span>
           </div>
-          <div data-v-1ed7d58f="" class="film-desc">剧情 | 100分钟 | 张栾 | 于谦 汤梦佳 秦鸣悦 王广源 孙艺杨 </div>
-          <img data-v-1ed7d58f="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAYCAMAAAD57OxYAAAAZlBMVEVHcEwZGhseHh4aGh8zMzMZGhsZGhwZGhsfHx8ZGhsbGxsZGhsZGxsZGxsZGxsZGxsbGxsaGhsaGh0aGh0ZGhwbGxsZGhweHh4ZGhsaGh0ZGxsZGxsZGxsZGhsZGxsZGxsaGhwZGhtuA7MxAAAAIXRSTlMA6iE5Bda99xD+OOWenXh6VddWV9BxviLpe7x5jeSBgI/e7hU0AAAAeUlEQVQY023PyRqCMAyFUSilA2VGnBX/939JN01QP7O6Z5ObFGt6FjoPuCjuEBeBvYKvRKGG8iQyZ5iCqPFwtKIxQqsre2BQdV8F7rfgoJh2WAe+yWghjjkPQJ/zHKHLufLg8jmmhDp8vGD+LH1BnKU6wU3vXdOm+Q34ngmHHMc+eAAAAABJRU5ErkJggg==" width="4px" height="8px" alt="" class="film-more">
+          <div class="film-desc">{{ this.$store.state.filmData.category}} | 100分钟 | {{ this.$store.state.filmData.director}} | <span v-for="(item,index) in this.$store.state.filmData.actors" :key="index">{{item.name}}</span> </div>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAYCAMAAAD57OxYAAAAZlBMVEVHcEwZGhseHh4aGh8zMzMZGhsZGhwZGhsfHx8ZGhsbGxsZGhsZGxsZGxsZGxsZGxsbGxsaGhsaGh0aGh0ZGhwbGxsZGhweHh4ZGhsaGh0ZGxsZGxsZGxsZGhsZGxsZGxsaGhwZGhtuA7MxAAAAIXRSTlMA6iE5Bda99xD+OOWenXh6VddWV9BxviLpe7x5jeSBgI/e7hU0AAAAeUlEQVQY023PyRqCMAyFUSilA2VGnBX/939JN01QP7O6Z5ObFGt6FjoPuCjuEBeBvYKvRKGG8iQyZ5iCqPFwtKIxQqsre2BQdV8F7rfgoJh2WAe+yWghjjkPQJ/zHKHLufLg8jmmhDp8vGD+LH1BnKU6wU3vXdOm+Q34ngmHHMc+eAAAAABJRU5ErkJggg==" width="4px" height="8px" alt="" class="film-more">
         </div>
         <div class="date-list">
           <div class="tabs-bar-wrapper dateWrap">
@@ -166,6 +166,7 @@ export default {
     }
   },
   created () {
+    console.log(this.$store.state.filmData)
     axios.get('https://m.maizuo.com/gateway', {
       params: {
         cinemaId: this.$route.params.id
@@ -179,7 +180,7 @@ export default {
       // console.log(data)
       if (data.status === 0) {
         this.choiceFilmList = data.data.cinema
-        console.log(this.choiceFilmList)
+        // console.log(this.choiceFilmList)
       } else {
         alert('网络异常，请稍后重试')
       }

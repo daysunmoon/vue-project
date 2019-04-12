@@ -2,26 +2,26 @@
     <div class="film-item">
         <div class="top">
             <i class="iconfont icon-zuo" @click="toleft"></i>
-            <p>{{ detailList.name }}</p>
+            <p>{{ this.$store.state.filmData.name }}</p>
             <p></p>
         </div>
         <div class="filmImg">
-            <img :src="detailList.poster" alt="">
+            <img :src="this.$store.state.filmData.poster" alt="">
         </div>
         <div class="info">
             <div class="title">
-                <div>{{ detailList.name }}<i class="D">2D</i></div>
-                <span><i class="pingfen">{{ detailList.grade }}</i>分</span>
+                <div>{{ this.$store.state.filmData.name }}<i class="D">2D</i></div>
+                <span><i class="pingfen">{{ this.$store.state.filmData.grade }}</i>分</span>
             </div>
-            <div class="category grey-text">{{ detailList.category }}</div>
+            <div class="category grey-text">{{ this.$store.state.filmData.category }}</div>
             <div class="premieretime grey-text">2019-02-05上映</div>
-            <div class="runtime grey-text"><i>{{ detailList.nation }}</i>  | <i>{{ detailList.runtime }}分钟</i></div>
-            <div class="introduction grey-text">{{ detailList.synopsis }}</div>
+            <div class="runtime grey-text"><i>{{ this.$store.state.filmData.nation }}</i>  | <i>{{ this.$store.state.filmData.runtime }}分钟</i></div>
+            <div class="introduction grey-text">{{ this.$store.state.filmData.synopsis }}</div>
         </div>
         <div class="actor">
             <div class="actor-person">演职人员</div>
             <div class="actors">
-                <div class="actors-item" v-for="(actors,index) in detailList.actors" :key="index">
+                <div class="actors-item" v-for="(actors,index) in this.$store.state.filmData.actors" :key="index">
                       <img :src="actors.avatarAddress" alt="">
                     <div class="actors-name">
                         <span class="actorsName">{{ actors.name }}</span>
@@ -36,7 +36,7 @@
           </div>
           <div class="photos">
             <ul>
-              <li v-for="(photos,index) in detailList.photos" :key="index"><img :src="photos" alt=""></li>
+              <li v-for="(photos,index) in this.$store.state.filmData.photos" :key="index"><img :src="photos" alt=""></li>
             </ul>
           </div>
         </div>
@@ -52,11 +52,11 @@
 <script>
 import axios from 'axios'
 export default {
-  data () {
-    return {
-      detailList: []
-    }
-  },
+  // data () {
+  //   return {
+  //     detailList: []
+  //   }
+  // },
   created () {
     axios.get('https://m.maizuo.com/gateway', {
       params: {
@@ -70,8 +70,9 @@ export default {
     }).then(res => {
       let data = res.data
       if (data.status === 0) {
-        this.detailList = data.data.film
-        console.log(this.detailList)
+        this.$store.commit('getFilmData',data.data.film)
+        // this.detailList = data.data.film
+        // console.log(this.detailList)
       } else {
         alert('网络异常，请稍后重试')
       }

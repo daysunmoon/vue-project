@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     pages () {
-      console.log(this.total)
+      // console.log(this.total)
       return Math.ceil(this.total / this.pageSize)
     }
   },
@@ -65,6 +65,7 @@ export default {
           let data = res.data
           if (data.status === 0) {
             // this.filmList = data.data.films
+            // this.$store.commit('getFilmData',data.data.films)
             this.filmList = this.filmList.concat(data.data.films)
             this.total = data.data.total
           } else {

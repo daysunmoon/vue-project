@@ -39,6 +39,7 @@ export default {
         console.log(data)
         if (data.code === 0) {
           sessionStorage.setItem('nickname', data.data.nickName)
+          sessionStorage.setItem('userName',data.data.userName)
           this.$router.replace({
             path: this.$route.query.redirect
           })

@@ -50,6 +50,7 @@ let router = new VueRouter({
   },
   {
     path: '/selectCinema',
+    name: 'selectFilm',
     component: () => import('./views/SelectCinema/SelectCiname.vue')
   },
   {
@@ -60,6 +61,10 @@ let router = new VueRouter({
   {
     path: '/choiceChair',
     component: () => import('./views/ChoiceChair/ChoiceChair.vue')
+  },
+  {
+    path: '/isokOrder',
+    component: () => import('./views/isokOrder/isokOrder.vue')
   },
   {
     path: '/city',
@@ -93,7 +98,7 @@ let router = new VueRouter({
   ]
 })
 router.beforeEach((to, from, next) => {
-  if ((to.path === '/card' || to.path === '/money' || to.path === '/settings') && !sessionStorage.getItem('nickname')) {
+  if ((to.path === '/card' || to.path === '/money' || to.path === '/settings') || to.path === '/isokOrder' && !sessionStorage.getItem('nickname')) {
     next({
       path: '/login',
       query: {

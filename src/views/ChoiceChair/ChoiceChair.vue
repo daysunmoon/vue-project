@@ -10,7 +10,7 @@
       <div class="right"></div>
     </header>
     <div class="info">
-      <div class="film-name">老师·好</div>
+      <div class="film-name">{{ this.$store.state.filmData.name }}</div>
       <div class="film-des">周六04月06日 18:30 原声2D</div>
       <div class="film-limit"></div>
     </div>
@@ -30,7 +30,7 @@
         <div class="map">
           <div data-v-c07dfd94="" class="axion-middle" style="height: 200px;"></div>
           <div class="seats">
-            <div class="seat" style="left:125px;top:0;">
+            <div class="seat" v-for="(item,index) in chair" :key="index" :style="{left:item.left + 'px',top:item.top + 'px'}" :class="{checkedSeat : item.ischecked === true} "  @click="checkedChair(index)">
               <div class="single">
                 <div class="normal">
                   <svg aria-hidden="true" class="icon">
@@ -45,195 +45,6 @@
                 </div>
               </div>
             </div>
-            <div class="seat" style="left: 150px; top: 0px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 175px; top: 0px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 200px; top: 0px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 225px; top: 0px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 250px; top: 0px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 275px; top: 0px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 300px; top: 0px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 325px; top: 0px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 350px; top: 0px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 375px; top: 0px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 125px; top: 25px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 150px; top: 25px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 175px; top: 25px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 200px; top: 25px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 225px; top: 25px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 250px; top: 25px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 275px; top: 25px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 300px; top: 25px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 325px; top: 25px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 350px; top: 25px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div class="seat" style="left: 375px; top: 25px;">
-              <div class="single">
-                <div class="normal">
-                  <svg aria-hidden="true" class="icon">
-                    <use xlink:href="#icon-weixuanze"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -243,18 +54,77 @@
       <span data-v-183817e5="" class="num">15036974592</span>
       <img data-v-183817e5="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAP1BMVEVHcEx8goJ5foN6foJ5hYV5fYJ6fYN6fYJ5foN5fYN5fYJ6fYR6fYR5fYJ6f4R5fYJ/f7+IiIh/f5F5fYN5fYIESO1EAAAAFHRSTlMALWWBFf6jkm3U+UtR5TS5BA8OivVX9aEAAAB6SURBVCjP1dJJFoQgDEXRB0pjX032v9YaYEkMugDf9B7C5APOZ9UKAP32hS6IbikyyIYLY0yqeZehx0vEVoQs6UYu6C8tHdJQFUtKDB0yL+uZ6psk+UTves3SVP+x9Jo+3JDq8XQ1ACCKb2ZTimNwzdj2Qgd2oiXv4Adk4gv+2l0OrwAAAABJRU5ErkJggg==" width="13px" height="13px" alt="" class="phone-editor">
     </div>
-    <div data-v-a54ce692="" data-v-183817e5="" class="confirm-btn disable" data-enter-time="1554540233" data-click-fun="track_f_952854">请先选座</div>
+    <div class="confirm-btn disable" @click="chairOK">确认选座</div>
   </div>
 </template>
 <script>
 export default {
   data () {
     return {
-      chair: []
+      /* eslint-disable */
+      chair: [
+      { chairId: 'A1', ischecked: false, left: 125, top: 0 },
+      { chairId: 'A2', ischecked: false, left: 150, top: 0 },
+      { chairId: 'A3', ischecked: false, left: 175, top: 0 },
+      { chairId: 'A4', ischecked: false, left: 200, top: 0 },
+      { chairId: 'A5', ischecked: false, left: 225, top: 0 },
+      { chairId: 'A6', ischecked: false, left: 250, top: 0 },
+      { chairId: 'A7', ischecked: false, left: 275, top: 0 },
+      { chairId: 'A8', ischecked: false, left: 300, top: 0 },
+      { chairId: 'A9', ischecked: false, left: 325, top: 0 },
+      { chairId: 'B1', ischecked: false, left: 125, top: 25 },
+      { chairId: 'B2', ischecked: false, left: 150, top: 25 },
+      { chairId: 'B3', ischecked: false, left: 175, top: 25 },
+      { chairId: 'B4', ischecked: false, left: 200, top: 25 },
+      { chairId: 'B5', ischecked: false, left: 225, top: 25 },
+      { chairId: 'B6', ischecked: false, left: 250, top: 25 },
+      { chairId: 'B7', ischecked: false, left: 275, top: 25 },
+      { chairId: 'B8', ischecked: false, left: 300, top: 25 },
+      { chairId: 'B9', ischecked: false, left: 325, top: 25 },
+      { chairId: 'C1', ischecked: false, left: 125, top: 50 },
+      { chairId: 'C2', ischecked: false, left: 150, top: 50 },
+      { chairId: 'C3', ischecked: false, left: 175, top: 50 },
+      { chairId: 'C4', ischecked: false, left: 200, top: 50 },
+      { chairId: 'C5', ischecked: false, left: 225, top: 50 },
+      { chairId: 'C6', ischecked: false, left: 250, top: 50 },
+      { chairId: 'C7', ischecked: false, left: 275, top: 50 },
+      { chairId: 'C8', ischecked: false, left: 300, top: 50 },
+      { chairId: 'C9', ischecked: false, left: 325, top: 50 },
+      { chairId: 'D1', ischecked: false, left: 125, top: 75 },
+      { chairId: 'D2', ischecked: false, left: 150, top: 75 },
+      { chairId: 'D3', ischecked: false, left: 175, top: 75 },
+      { chairId: 'D4', ischecked: false, left: 200, top: 75 },
+      { chairId: 'D5', ischecked: false, left: 225, top: 75 },
+      { chairId: 'D6', ischecked: false, left: 250, top: 75 },
+      { chairId: 'D7', ischecked: false, left: 275, top: 75 },
+      { chairId: 'D8', ischecked: false, left: 300, top: 75 },
+      { chairId: 'D9', ischecked: false, left: 325, top: 75 },
+      { chairId: 'E1', ischecked: false, left: 125, top: 100 },
+      { chairId: 'E2', ischecked: false, left: 150, top: 100 },
+      { chairId: 'E3', ischecked: false, left: 175, top: 100 },
+      { chairId: 'E4', ischecked: false, left: 200, top: 100 },
+      { chairId: 'E5', ischecked: false, left: 225, top: 100 },
+      { chairId: 'E6', ischecked: false, left: 250, top: 100 },
+      { chairId: 'E7', ischecked: false, left: 275, top: 100 },
+      { chairId: 'E8', ischecked: false, left: 300, top: 100 },
+      { chairId: 'E9', ischecked: false, left: 325, top: 100 },
+      ],
+      localStorageSeat: []
     }
   },
   methods: {
-    checkedChair () {
+    checkedChair (index) {
+      this.chair[index].ischecked = !this.chair[index].ischecked
+      if (this.chair[index].ischecked) {
+        this.localStorageSeat.push(this.chair[index].chairId)
+      } else {  
+        console.log(1)
+      }
+      localStorage.setItem('chair',this.localStorageSeat)
+    },
+    chairOK () {
+      this.$store.dispatch('getOrderList',{chairId:this.chair[index].chairId})
+      this.$router.push('/isokOrder')
     }
   }
 }
@@ -387,8 +257,6 @@ export default {
             position: absolute;
             display: inline-block;
             margin: 2.5px;
-            // left: 125px;
-            top: 0;
             .single{
               width: 24px;
               height: 24px;
@@ -396,9 +264,6 @@ export default {
               position: relative;
               .normal{
                 height: 100%;
-                .actived{
-                  fill: #c03131;
-                }
                 .icon{
                   width: 1em;
                   height: 1em;
@@ -428,8 +293,11 @@ export default {
     right: 0;
     left: 0;
     z-index: 2;
-  }
+  } 
   .disable{
-    color: hsla(0,0%,100%,.3);
+    color: #fff;
+  }
+  .checkedSeat{
+    background: green;
   }
 </style>
