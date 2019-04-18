@@ -1,6 +1,6 @@
 module.exports = {
   plugins: {
-    autoprefixer: {},
+    autoprefixer: {}
     // 'postcss-pxtorem': {
     //   // html的fontSize 大小
     //   rootValue: 100,

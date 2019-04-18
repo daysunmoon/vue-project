@@ -1,7 +1,7 @@
 <template>
   <div class="isokOrder">
     <header data-v-2475a5f8="" style="position: fixed;">
-      <i class="iconfont icon-zuo left"></i> 
+      <i class="iconfont icon-zuo left"></i>
       <div data-v-2475a5f8="" class="title">确认订单</div>
     </header>
     <div class="decorate"></div>
@@ -21,14 +21,14 @@
             <img src="https://pic.maizuo.com/usr/movie/cc8f853de2924d92439c06c5786d35d9.jpg" alt="">
           </div>
           <div class="product-info film-info">
-            <div class="product-name">老师·好(2D订座票)</div>
+            <div class="product-name">{{ this.$store.state.filmData.name }}</div>
             <div class="film-time">2019-04-10 21:30</div>
             <div class="film-cinema">深圳金逸影城沙井店</div>
             <div class="film-seat">
               <span>1号VIP激光厅</span>
-              2排2座
+              <span v-for="(item,index) in this.$store.state.orderList" :key="index">{{ item }}</span>
             </div>
-            <div class="product-num">×1</div>
+            <div class="product-num">×{{this.$store.state.orderList.length}}</div>
             <div class="product-price">
               <small class="icon-yen">¥</small>40.00
               <span class="film-tip">（含服务费5.00元/人）</span>
@@ -94,6 +94,10 @@
     </div>
   </div>
 </template>
+<script>
+export default {}
+</script>
+
 <style lang="less">
 .isokOrder {
   color: #191a1b;
@@ -136,7 +140,6 @@ header {
   }
 }
 .decorate {
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAAADCAMAAACJf2XKAAAB4FBMV…4r5z6C78i5m6UBwZeseeAl+Facuwu+L+dOgu/834CnhQGPH5tUc7bKW7UzAAAAAElFTkSuQmCC);
   width: 100%;
   height: 5px;
 }
@@ -297,7 +300,7 @@ header {
         i{
           font-size: 20px;
         }
-      } 
+      }
     }
     li{
       display: flex;

@@ -54,7 +54,7 @@
       <span data-v-183817e5="" class="num">15036974592</span>
       <img data-v-183817e5="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAP1BMVEVHcEx8goJ5foN6foJ5hYV5fYJ6fYN6fYJ5foN5fYN5fYJ6fYR6fYR5fYJ6f4R5fYJ/f7+IiIh/f5F5fYN5fYIESO1EAAAAFHRSTlMALWWBFf6jkm3U+UtR5TS5BA8OivVX9aEAAAB6SURBVCjP1dJJFoQgDEXRB0pjX032v9YaYEkMugDf9B7C5APOZ9UKAP32hS6IbikyyIYLY0yqeZehx0vEVoQs6UYu6C8tHdJQFUtKDB0yL+uZ6psk+UTves3SVP+x9Jo+3JDq8XQ1ACCKb2ZTimNwzdj2Qgd2oiXv4Adk4gv+2l0OrwAAAABJRU5ErkJggg==" width="13px" height="13px" alt="" class="phone-editor">
     </div>
-    <div class="confirm-btn disable" @click="chairOK">确认选座</div>
+    <router-link :to="{name:'isokOrder',params:{id:this.$route.params.id}}" class="confirm-btn disable">确认选座</router-link>
   </div>
 </template>
 <script>
@@ -120,11 +120,8 @@ export default {
       } else {  
         console.log(1)
       }
-      localStorage.setItem('chair',this.localStorageSeat)
-    },
-    chairOK () {
-      this.$store.dispatch('getOrderList',{chairId:this.chair[index].chairId})
-      this.$router.push('/isokOrder')
+      // localStorage.setItem('chair',this.localStorageSeat)
+      this.$store.commit('getOrderList',this.localStorageSeat)
     }
   }
 }

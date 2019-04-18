@@ -133,33 +133,18 @@
             </div>
           </div>
         </div>
-        <div data-v-1ed7d58f="" class="schedule-list">
-          <div>
-            <router-link to="/choiceChair" class="schedule-item">
-              <div data-v-1ed7d58f="" class="left">
-                <div data-v-1ed7d58f="" class="start-at">22:45</div>
-                <div data-v-1ed7d58f="" class="end-at">00:30散场</div>
-              </div>
-              <div data-v-1ed7d58f="" class="middle">
-                <div data-v-1ed7d58f="" class="language">国语2D</div>
-                <div data-v-1ed7d58f="" class="hall">激光</div>
-              </div>
-              <div data-v-1ed7d58f="" class="right">
-                <div data-v-1ed7d58f="" class="buy-ticket">购票</div>
-                <div data-v-1ed7d58f="" class="lowest-price">
-                  <span data-v-1ed7d58f="" class="price-icon">￥</span>58
-                </div>
-              </div>
-            </router-link>
-          </div>
-        </div>
+        <FilmTime></FilmTime>
       </div>
     </div>
   </div>
 </template>
 <script>
 import axios from 'axios'
+import FilmTime from '@/components/FilmTime/Index.vue'
 export default {
+  components: {
+    FilmTime
+  },
   data () {
     return {
       choiceFilmList: {}
@@ -419,69 +404,6 @@ export default {
               }
                 li.active {
                   color: #ff5f16;
-                }
-              }
-            }
-          }
-        }
-        .schedule-list{
-          min-height: calc(100vh - 44px);
-          .schedule-item{
-            height: 74px;
-            padding: 15px;
-            position: relative;
-            background: #fff;
-            .left{
-              float: left;
-              width: 100px;
-              .start-at{
-                font-size: 15px;
-                color: #191a1b;
-              }
-              .end-at{
-                font-size: 13px;
-                color: #797d82;
-                margin-top: 2px;
-              }
-            }
-            .middle{
-              float: left;
-              width: calc(100% - 240px);
-              .language{
-                font-size: 15px;
-                color: #191a1b;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-              }
-              .hall{
-                font-size: 13px;
-                color: #797d82;
-                margin-top: 2px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-              }
-            }
-            .right{
-              float: right;
-              padding: 10px 0;
-              line-height: 25px;
-              color: #ff5f16;
-              .buy-ticket{
-                float: right;
-                height: 25px;
-                width: 50px;
-                border-radius: 2px;
-                position: relative;
-                text-align: center;
-              }
-              .lowest-price{
-                float: right;
-                padding-right: 20px;
-                font-size: 15px;
-                .price-icon{
-                  font-size: 10px;
                 }
               }
             }

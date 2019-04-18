@@ -70,7 +70,7 @@ export default {
     }).then(res => {
       let data = res.data
       if (data.status === 0) {
-        this.$store.commit('getFilmData',data.data.film)
+        this.$store.commit('getFilmData', data.data.film)
         // this.detailList = data.data.film
         // console.log(this.detailList)
       } else {

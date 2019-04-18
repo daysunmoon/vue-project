@@ -59,11 +59,13 @@ let router = new VueRouter({
     component: () => import('./views/ChoiceFilm/ChoiceFilm.vue')
   },
   {
-    path: '/choiceChair',
+    path: '/choiceChair:id',
+    name: 'choiceChair',
     component: () => import('./views/ChoiceChair/ChoiceChair.vue')
   },
   {
-    path: '/isokOrder',
+    path: '/isokOrder:id',
+    name: 'isokOrder',
     component: () => import('./views/isokOrder/isokOrder.vue')
   },
   {
