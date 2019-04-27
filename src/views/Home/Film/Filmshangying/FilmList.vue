@@ -3,7 +3,7 @@
         <div id="main">
             <li v-for="item in filmList" :key="item.filmId">
                 <router-link :to="{name:'detail',params:{id:item.filmId}}">
-                    <div class="tupian"><img :src="item.poster" alt=""></div>
+                    <div class="tupian"><img :src="item.imgUrl" alt=""></div>
                     <div class="intro">
                         <div class="name">
                             <span class="filmName">{{ item.name }}</span>
@@ -11,13 +11,13 @@
                         </div>
                         <div class="code">
                             <span class="label">观众评分 </span>
-                            <span class="grade">{{ item.grade }}</span>
+                            <span class="grade">{{ item.score }}</span>
                         </div>
                         <div class="idol">
-                            <span class="label">主演：{{ item.actors ? item.actors.map(items => items.name).join(' ') : '暂无主演' }}</span>
+                            <span class="label">主演：{{ item.starring ? item.starring : '暂无主演' }}</span>
                         </div>
                         <div class="timing">
-                            <span class="label">中国大陆 | 100分钟</span>
+                            <span class="label">{{item.country}} | {{item.time}}分钟</span>
                         </div>
                     </div>
                     <div class="mai">购票</div>
@@ -29,45 +29,45 @@
     </section>
 </template>
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
       filmList: [],
-      pageSize: 10,
+      pageSize: 20,
       pageNum: 1,
       total: 0
     }
   },
   computed: {
     pages () {
-      // console.log(this.total)
-      return Math.ceil(this.total / this.pageSize)
+      console.log(this.total)
+      return Math.ceil(this.total / 2)
     }
   },
   methods: {
     getFilmData () {
-      axios
-        .get('https://m.maizuo.com/gateway', {
-          headers: {
-            'X-Client-Info': '{"a":"3000","ch":"1002","v":"1.0.0","e":"154815477056027848376790"}',
-            'X-Host': 'mall.film-ticket.film.list'
-          },
+      this.$http
+        .get('/films/search', {
+          // headers: {
+          //   'X-Client-Info': '{"a":"3000","ch":"1002","v":"1.0.0","e":"154815477056027848376790"}',
+          //   'X-Host': 'mall.film-ticket.film.list'
+          // },
           params: {
-            cityId: 440300,
+            // cityId: 440300,
             pageNum: this.pageNum,
-            pageSize: this.pageSize,
-            type: 1,
-            k: 1623602
+            pageSize: this.pageSize
+            // type: 1,
+            // k: 1623602
           }
         })
         .then(res => {
-          let data = res.data
-          if (data.status === 0) {
+          // let data = res.data
+          console.log(res)
+          if (res.code === 0) {
             // this.filmList = data.data.films
             // this.$store.commit('getFilmData',data.data.films)
-            this.filmList = this.filmList.concat(data.data.films)
-            this.total = data.data.total
+            this.filmList = this.filmList.concat(res.data)
+            this.total = res.data.length
           } else {
             alert('网络异常，请稍后重试')
           }

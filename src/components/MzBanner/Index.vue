@@ -14,7 +14,6 @@
 </div>
 </template>
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
@@ -43,8 +42,8 @@ export default {
   },
   created () {
     // https://m.maizuo.com/gateway?type=2&cityId=440300&k=3352297
-    axios
-      .get('http://localhost:3000/banner/search', {
+    this.$http
+      .get('banner/search', {
         // headers: {
         //   // 配置请求头
         //   'X-Client-Info': '{"a":"3000","ch":"1002","v":"1.0.0","e":"154815477056027848376790"}',
@@ -55,15 +54,18 @@ export default {
         }
       })
       .then(res => {
-        let data = res.data
-        if (data.code === 0) {
-          this.bannerList = data.data
+        console.log(res)
+        // let data = res.data
+        if (res.code === 0) {
+          this.bannerList = res.data
           this.$nextTick(() => {
             this.initSwiper()
           })
         } else {
           alert('网络异常，请稍后重试')
         }
+      }).catch(err => {
+        console.log(err)
       })
   },
   mounted () {}

@@ -118,13 +118,13 @@
             <div class="tabs-bar">
               <ul class="tabs-nav">
                 <li class="active" style="padding: 0px 15px;">
-                  <span>今天4月5日</span>
+                  <router-link to="/choiceFilm/:id/27day">今天4月27日</router-link>
                 </li>
                 <li class="" style="padding: 0px 15px;">
-                  <span>明天4月6日</span>
+                  <router-link to="/choiceFilm/:id/28day">明天4月28日</router-link>
                 </li>
                 <li class="" style="padding: 0px 15px;">
-                  <span>后天4月7日</span>
+                  <router-link to="/choiceFilm/:id/29day">后天4月29日</router-link>
                 </li>
                 <div class="tab-ink-bar-wrapper" style="transform: translate3d(0%, 0px, 0px); padding: 0px 15px;">
                   <span class="tab-ink-bar" style="width: 72px;"></span>
@@ -133,18 +133,14 @@
             </div>
           </div>
         </div>
-        <FilmTime></FilmTime>
+        <router-view></router-view>
       </div>
     </div>
   </div>
 </template>
 <script>
 import axios from 'axios'
-import FilmTime from '@/components/FilmTime/Index.vue'
 export default {
-  components: {
-    FilmTime
-  },
   data () {
     return {
       choiceFilmList: {}

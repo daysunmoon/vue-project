@@ -9,7 +9,7 @@
       <div class="bg-item info-input">
         <i class="iconfont icon-dianhuaben"></i>
         <div class="phone">
-          <div class="main-info">150 3697 4592</div>
+          <div class="main-info">aaa</div>
           <div class="phone-tip">订单信息将发送到该手机</div>
         </div>
       </div>
@@ -83,7 +83,7 @@
         <i class="iconfont icon-sousuo-paixujiantouxia" style="font-size: 15px; color: rgb(121, 125, 130); display: none;"></i>
         <span>抵扣明细</span>
       </div>
-      <div class="to-pay" data-enter-time="1554886741" data-click-fun="track_f_392949">提交订单</div>
+      <div class="to-pay" @click="isokOrder">提交订单</div>
       <div class="need-pay">
         <span>
           <small class="icon-yen">¥</small>
@@ -95,7 +95,20 @@
   </div>
 </template>
 <script>
-export default {}
+import axios from 'axios'
+export default {
+  methods: {
+    isokOrder () {
+      let userName = localStorage.getItem('userName')
+      let chair = sessionStorage.getItem('chair')
+      axios.post('http://localhost:3000/mz/order',{
+        userName: userName,
+        chair: chair
+      })
+      alert('购买成功')
+    }
+  }
+}
 </script>
 
 <style lang="less">

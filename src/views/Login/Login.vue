@@ -6,7 +6,7 @@
         <div id="login-form">
             <form action="">
                 <div class="phone Input">
-                    <input type="text" placeholder="手机号" v-model="username">
+                    <input type="text" placeholder="账号" v-model="username">
                     <div class="get-code">获取验证码</div>
                 </div>
                 <div class="code Input">
@@ -21,7 +21,6 @@
     </div>
 </template>
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
@@ -31,20 +30,20 @@ export default {
   },
   methods: {
     handleClick () {
-      axios.post('http://localhost:3000/user/login', {
+      this.$http.post('/user/login', {
         userName: this.username,
         password: this.password
       }).then(res => {
-        var data = res.data
-        console.log(data)
-        if (data.code === 0) {
-          sessionStorage.setItem('nickname', data.data.nickName)
-          sessionStorage.setItem('userName', data.data.userName)
+        // var data = res.data
+        // console.log(res)
+        if (res.code === 0) {
+          sessionStorage.setItem('nickname', res.data.nickName)
+          sessionStorage.setItem('userName', res.data.userName)
           this.$router.replace({
             path: this.$route.query.redirect
           })
         } else {
-          alert(data.msg)
+          alert(res.msg)
         }
       })
     }

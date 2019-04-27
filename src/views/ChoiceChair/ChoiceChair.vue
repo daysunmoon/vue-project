@@ -120,8 +120,8 @@ export default {
       } else {  
         console.log(1)
       }
-      // localStorage.setItem('chair',this.localStorageSeat)
-      this.$store.commit('getOrderList',this.localStorageSeat)
+      localStorage.setItem('chair',this.localStorageSeat)
+      // this.$store.commit('getOrderList',this.localStorageSeat)
     }
   }
 }

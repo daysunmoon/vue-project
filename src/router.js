@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import NProgress from 'nprogress'
 // import Film from './views/Film.vue'
 // import Cinema from './views/Cinema.vue'
 // import Center from './views/Center.vue'
@@ -56,7 +57,21 @@ let router = new VueRouter({
   {
     path: '/choiceFilm/:id',
     name: 'choiceFilm',
-    component: () => import('./views/ChoiceFilm/ChoiceFilm.vue')
+    component: () => import('./views/ChoiceFilm/ChoiceFilm.vue'),
+    children: [
+      {
+        path: '27day',
+        component: () => import('./views/ChoiceFilm/filmTime/27day.vue')
+      },
+      {
+        path: '28day',
+        component: () => import('./views/ChoiceFilm/filmTime/28day.vue')
+      },
+      {
+        path: '29day',
+        component: () => import('./views/ChoiceFilm/filmTime/29day.vue')
+      }
+    ]
   },
   {
     path: '/choiceChair:id',
@@ -100,7 +115,11 @@ let router = new VueRouter({
   ]
 })
 router.beforeEach((to, from, next) => {
-  if ((to.path === '/card' || to.path === '/money' || to.path === '/settings') || to.path === '/isokOrder' && !sessionStorage.getItem('nickname')) {
+  // 调用 NProgress.start();
+  NProgress.start()
+  let nickname = sessionStorage.getItem('nickname')
+  let list = ['/card', '/money', '/settings']
+  if (list.indexOf(to.path) > -1 || to.name === 'isokOrder' && !nickname) {
     next({
       path: '/login',
       query: {

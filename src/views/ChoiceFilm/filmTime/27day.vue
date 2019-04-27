@@ -4,7 +4,7 @@
       <router-link :to="{name:'choiceChair',params:{id:item.scheduleId}}" class="schedule-item">
         <div class="left">
           <div class="start-at">22:45</div>
-          <div class="end-at">00:30散场</div>
+          <div class="end-at">{{item.endAt}}散场</div>
         </div>
         <div class="middle">
           <div class="language">{{ item.filmLanguage }}{{ item.imagery }}</div>
@@ -32,10 +32,10 @@ export default {
     axios
       .get('https://m.maizuo.com/gateway', {
         params: {
-          filmId: 4581,
-          cinemaId: 795,
-          date: 1555084800,
-          k: 3614421
+          filmId: 4588,
+          cinemaId: 8506,
+          date: 1556208000,
+          k: 3372982
         },
         headers: {
           'X-Client-Info':
@@ -59,12 +59,14 @@ export default {
 .schedule-list {
   min-height: calc(100vh - 44px);
   .filmTimeList {
-    margin-bottom: 15px;
+    // margin-bottom: 15px;
+    height: 74px;
   }
   .schedule-item {
     height: 74px;
+    width: 100%;
     padding: 15px;
-    position: relative;
+    // position: relative;
     background: #fff;
     .left {
       float: left;
